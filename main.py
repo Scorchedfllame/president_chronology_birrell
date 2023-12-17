@@ -26,14 +26,16 @@ def main():
             inverse[x] = i[0]
     streak = 0
     answer = ''
+    askable = questions.copy()
     while len(asked) < len(questions):
         os.system('cls||clear')
         print(f'Question {len(asked) + 1}/{len(questions)}')
         print(f'Streak: {streak}\n')
         for i in key.items():
             print(f'{i[0]}: {i[1]}')
-        question_number = random.randint(0, len(questions)-1)
-        question = questions[question_number]
+        question_number = random.randint(0, len(askable)-1)
+        question = askable[question_number]
+        askable.remove(question)
         if not(question in asked):
             asked.append(question)
             print(remove_date(question))
@@ -50,7 +52,12 @@ def main():
             else:
                 print(f"NOT RECOGNIZED. {inverse[question]}")
                 time.sleep(2)
+    if len(questions) == streak:
+        print("WOWOWOWOWOW 100%!!!!!")
+    print("YOU DID IT")
+    time.sleep(5)
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
